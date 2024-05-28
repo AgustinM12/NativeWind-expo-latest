@@ -73,9 +73,9 @@ export default function Index() {
         </View>
 
         <View className="flex justify-center items-center pt-3 space-y-1">
-          <StyledButton text={"Registrarse"} onPress={handleSubmit} />
+          <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Registrarse"} onPress={handleSubmit} />
           <View></View>
-          <StyledButton text={"¿Ya tienes una cuenta?"} />
+          <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"¿Ya tienes una cuenta?"} />
         </View>
 
         <Text className={`text-center ${message?.includes("Error") ? "text-red-500" : "text-green-500"}`}>{message}</Text>

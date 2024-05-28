@@ -15,11 +15,10 @@ NativeWindStyleSheet.setOutput({
 
 export default function Login() {
 
-    const { handleList, findUser } = useContext(AppContext)
+    const { findUser } = useContext(AppContext)
 
     const { input: userName, setInput: setUserName } = useInput("")
     const { input: userPass, setInput: setUserPass } = useInput("")
-    const { input: pass2, setInput: setPass2 } = useInput("")
     const { input: message, setInput: setMessage } = useInput("")
 
     const handleUserName = (text) => {
@@ -28,10 +27,6 @@ export default function Login() {
 
     const handleUserPass = (text) => {
         setUserPass(text)
-    }
-
-    const handlePass2 = (text) => {
-        setPass2(text)
     }
 
     const handleSubmit = () => {
@@ -69,9 +64,9 @@ export default function Login() {
                 </View>
 
                 <View className="flex justify-center items-center pt-3 space-y-1">
-                    <StyledButton text={"Iniciar Sesión"} onPress={handleSubmit} />
+                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Iniciar Sesión"} onPress={handleSubmit} />
                     <View></View>
-                    <StyledButton text={"¿Aún no tienes una cuenta?"} />
+                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"¿Aún no tienes una cuenta?"} />
                 </View>
 
                 <Text className={`text-center ${message?.includes("Error") ? "text-red-500" : "text-green-500"}`}>{message}</Text>

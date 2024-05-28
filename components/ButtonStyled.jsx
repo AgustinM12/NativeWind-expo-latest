@@ -1,8 +1,7 @@
 import React from 'react';
 import { Text, Pressable } from 'react-native';
-import { View } from 'react-native-web';
 
-export default function StyledButton({ text, onPress }) {
+export default function StyledButton({ text, onPress, icon, mainColor, secondColor }) {
     return (
         <Pressable
             className={({ pressed }) =>
@@ -11,8 +10,8 @@ export default function StyledButton({ text, onPress }) {
             onPress={onPress}
         >
             {({ pressed }) => (
-                <Text className={`text-white text-center font-semibold p-1 rounded-md transition-all duration-300 shadow-xl ${pressed ? 'bg-orange-600' : 'bg-orange-400'}`}>
-                    {text}
+                <Text className={`text-white text-center font-semibold p-1 rounded-md transition-all duration-300 shadow-xl ${pressed ? secondColor : mainColor}`}>
+                    {icon}{text}
                 </Text>
             )}
         </Pressable>

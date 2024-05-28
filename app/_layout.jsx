@@ -11,10 +11,11 @@ export default function Layout() {
           <Drawer.Screen
             name='index'
             options={{
-              drawerLabel: "Register",
-              title: "Register"
+              drawerLabel: "Registro",
+              title: "Registro"
             }}
           />
+
 
           <Drawer.Screen
             name='Login'
@@ -25,10 +26,34 @@ export default function Layout() {
           />
 
           <Drawer.Screen
-            name='List'
+            name='TaskList'
             options={{
-              drawerLabel: "UserList",
-              title: "UserList"
+              drawerLabel: "Lista de Tareas",
+              title: "Lista de Tareas"
+            }}
+          />
+
+          <Drawer.Screen
+            name='EditTask'
+            options={{
+              drawerLabel: "Editar Tarea",
+              title: "Editar Tarea"
+            }}
+          />
+
+          <Drawer.Screen
+            name='AddTask'
+            options={{
+              drawerLabel: "Agregar Tarea",
+              title: "Agregar Tarea"
+            }}
+          />
+
+          <Drawer.Screen
+            name='Task'
+            options={{
+              drawerLabel: "Tarea",
+              title: "Tarea"
             }}
           />
 
