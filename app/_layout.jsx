@@ -8,6 +8,7 @@ export default function Layout() {
     <AppProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Drawer>
+
           <Drawer.Screen
             name='index'
             options={{
@@ -15,7 +16,6 @@ export default function Layout() {
               title: "Registro"
             }}
           />
-
 
           <Drawer.Screen
             name='Login'
@@ -46,14 +46,6 @@ export default function Layout() {
             options={{
               drawerLabel: "Agregar Tarea",
               title: "Agregar Tarea"
-            }}
-          />
-
-          <Drawer.Screen
-            name='Task'
-            options={{
-              drawerLabel: "Tarea",
-              title: "Tarea"
             }}
           />
 
