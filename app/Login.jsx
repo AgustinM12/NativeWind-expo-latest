@@ -1,19 +1,18 @@
-import { Text, View, TextInput, SafeAreaView, ImageBackground, Image } from "react-native";
+import { Text, View, TextInput, SafeAreaView, ImageBackground, Image, Alert, ScrollView } from "react-native";
 import React, { useContext } from "react";
 import { useInput } from "../hooks/useForm";
-import { NativeWindStyleSheet } from "nativewind";
 import { AppContext } from "../context/AppContext";
 
 import PasswordInput from "../components/PasswordInput";
 import StyledButton from "../components/ButtonStyled";
 import owBgImg from "../assets/images/bg.jpg"
 import owLogo from "../assets/images/owLogo.png"
+import { useRouter } from "expo-router";
 
-NativeWindStyleSheet.setOutput({
-    default: "native",
-});
 
 export default function Login() {
+
+    const router = useRouter()
 
     const { findUser } = useContext(AppContext)
 
@@ -29,10 +28,20 @@ export default function Login() {
         setUserPass(text)
     }
 
+    const showAlert = () => {
+        Alert.alert(
+            "Success",
+            "¡Loggin Correcto!"
+        );
+
+        router.push("/TaskList");
+    };
+
+
     const handleSubmit = () => {
         if (userName !== "" && userPass !== "") {
             if (findUser(userName, userPass)) {
-                setMessage("Success: Login correcto")
+                showAlert()
             } else {
                 setMessage("Error: El usuario o contraseña son incorrectas")
             }
@@ -42,7 +51,7 @@ export default function Login() {
     }
 
     return (
-        <View className="min-h-screen max-h-screen max-w-screen flex items-center space-y-40 p-0">
+        <View className="flex items-center space-y-60">
             <ImageBackground source={owBgImg} className="w-[100%] h-full opacity-60"></ImageBackground>
 
             <View className="flex flex-col flex-1 absolute bg-[#b4c3da] py-8 w-[75%] rounded-md border-2 border-white">
@@ -66,7 +75,7 @@ export default function Login() {
                 <View className="flex justify-center items-center pt-3 space-y-1">
                     <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Iniciar Sesión"} onPress={handleSubmit} />
                     <View></View>
-                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"¿Aún no tienes una cuenta?"} />
+                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"¿Aún no tienes una cuenta?"} onPress={() => router.push("/")} />
                 </View>
 
                 <Text className={`text-center ${message?.includes("Error") ? "text-red-500" : "text-green-500"}`}>{message}</Text>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
 import { FlatList, View, Text } from 'react-native'
 import ButoonStyled from "../components/ButtonStyled"
@@ -20,7 +20,7 @@ export default function TaskList() {
             <View className="flex flex-col">
                 <Text className="text-center">{item.content}</Text>
                 <View className="flex flex-row justify-center space-x-3">
-                    <ButoonStyled text={"Editar"} icon={editIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} />
+                    <ButoonStyled text={"Editar"} icon={editIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={()=>router.push(`/Edit/${item.id}`)} />
                     <View></View>
                     <ButoonStyled text={"Ver"} icon={reviewIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={() => router.push(`/Task/${item.id}`)} />
                 </View>
@@ -29,6 +29,10 @@ export default function TaskList() {
     );
 
     const { tasks } = useContext(AppContext)
+
+    useEffect(() => {
+        console.log("Se actualizo", tasks);
+    }, [tasks])
 
     return (
         <View className="flex justify-center items-center p-5 space-y-3">

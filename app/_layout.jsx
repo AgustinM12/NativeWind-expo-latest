@@ -13,7 +13,8 @@ export default function Layout() {
             name='index'
             options={{
               drawerLabel: "Registro",
-              title: "Registro"
+              title: "Registro",
+              headerShown: false
             }}
           />
 
@@ -21,7 +22,8 @@ export default function Layout() {
             name='Login'
             options={{
               drawerLabel: "Login",
-              title: "Login"
+              title: "Login",
+              headerShown: false
             }}
           />
 
@@ -33,19 +35,29 @@ export default function Layout() {
             }}
           />
 
-          <Drawer.Screen
-            name='EditTask'
-            options={{
-              drawerLabel: "Editar Tarea",
-              title: "Editar Tarea"
-            }}
-          />
 
           <Drawer.Screen
             name='AddTask'
             options={{
-              drawerLabel: "Agregar Tarea",
-              title: "Agregar Tarea"
+              title: "Agregar Tarea",
+              drawerLabel: () => null,
+              drawerItemStyle: { display: "none" }
+            }}
+          />
+
+          <Drawer.Screen
+            name='Task/[id]'
+            options={{
+              drawerLabel: () => null,
+              drawerItemStyle: { display: "none" }
+            }}
+          />
+
+          <Drawer.Screen
+            name='Edit/[id]'
+            options={{
+              drawerLabel: () => null,
+              drawerItemStyle: { display: "none" }
             }}
           />
 

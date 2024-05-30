@@ -1,8 +1,8 @@
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import StyledButton from "../../components/ButtonStyled";
-import { useLocalSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { Drawer } from 'expo-router/drawer';
 
 import IconFoundation from 'react-native-vector-icons/Foundation';
@@ -12,25 +12,48 @@ const editIcon = (<IconFoundation name="page-edit" size={15} color="white" />)
 const deleteIcon = (<IconMaterialCommunityIcons name="delete-forever" size={15} color="white" />)
 
 export default function Login() {
+    const router = useRouter()
     const { id } = useLocalSearchParams();
-    const { findTask } = useContext(AppContext)
+    const { findTask, deleteTask } = useContext(AppContext)
     const [task, setTask] = useState(null)
 
-    const taskInfo = findTask(id)
+    const { tarea, indice } = findTask(id)
 
-    console.log(taskInfo);
+    console.log("index ", tarea, indice);
 
     useEffect(() => {
-        if (id) {
-            setTask(taskInfo)
+        if (id && tarea) {
+            setTask(tarea)
         }
     }, [id])
+
+    const handleDelete = () => {
+        deleteTask(indice)
+        router.push("/TaskList")
+    }
+
+    const showAlert = () => {
+        Alert.alert(
+            "Alerta",
+            "¿Esta seguro que quiere eliminar esta tarea?",
+            [
+                {
+                    text: "Cancelar",
+                    style: "cancel"
+                },
+                {
+                    text: "Aceptar",
+                    onPress: () => handleDelete()
+                }
+            ]
+        );
+    };
 
     return (
         <>
             <Drawer.Screen options={{
                 drawerLabel: "Tareas",
-                title: "Tarea N° "+ id
+                title: "Tarea N° " + id
             }} />
             <View className="min-h-screen max-h-screen max-w-screen flex items-center pt-[35%]">
 
@@ -43,9 +66,9 @@ export default function Login() {
                     </View>
 
                     <View className="flex flex-row justify-center items-center pt-6 space-x-3">
-                        <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Editar"} icon={editIcon} />
+                        <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Editar"} icon={editIcon} onPress={() => router.push(`/Edit/${task.id}`)} />
                         <View></View>
-                        <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Eliminar"} icon={deleteIcon} />
+                        <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Eliminar"} icon={deleteIcon} onPress={showAlert} />
                     </View>
 
                 </View>

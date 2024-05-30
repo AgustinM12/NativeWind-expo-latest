@@ -20,19 +20,40 @@ export const AppProvider = ({ children }) => {
 
     const findUser = (userName, userPass) => {
         if (user?.some(account => account.userName === userName && account.userPass === userPass)) {
-            setLoged(!loged)
+            setLoged(true)
+            return true
+        } else {
+            return false
         }
     };
 
     const findTask = (id) => {
-        if (tasks) {
-            const index = tasks.findIndex(task => task.id == id);
-            if (index !== -1) {
-                return tasks[index];
-            }
+        const index = tasks?.findIndex(task => task.id == id);
+        if (index !== -1) {
+            return { tarea: tasks[index], indice: index };
         }
-        return null; // Return null if no task is found with the given id
     };
+
+    const editTask = (index, newContent) => {
+        try {
+            tasks[index].title = newContent.title
+            tasks[index].content = newContent.content
+            return true
+        } catch (error) {
+            console.log("Error detectado: ", error);
+            return false
+        }
+    }
+
+    const deleteTask = (id) => {
+        try {
+            tasks.splice(id, 1)
+        } catch (error) {
+            console.log("Error detectado: ", error);
+        }
+    }
+
+
 
     const roleList = {
         dps: ["ashe", "bastion", "cassidy", "echo", "genji", "hanzo", "junkrat", "mei", "pharah", "reaper", "sojourn", "soldier-76", "sombra", "symmetra", "torbjorn", "tracer", "venture", "widowmaker"],
@@ -41,7 +62,7 @@ export const AppProvider = ({ children }) => {
     }
 
     return (
-        <AppContext.Provider value={{ user, handleUser, roleList, findUser, loged, tasks, addTasks, findTask }}>
+        <AppContext.Provider value={{ user, handleUser, roleList, findUser, loged, tasks, addTasks, findTask, deleteTask, editTask }}>
             {children}
         </AppContext.Provider>
     );

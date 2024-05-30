@@ -92,7 +92,7 @@ export default function Login() {
                         onChangeText={handleContent}
                     />
                 </View>
-                <View className="flex flex-row justify-center items-center pt-8 space-x-3">
+                <View className="flex flex-row-reverse justify-center items-center pt-8 space-x-3">
                     <StyledButton
                         mainColor={"bg-orange-400"}
                         secondColor={"bg-orange-600"}
