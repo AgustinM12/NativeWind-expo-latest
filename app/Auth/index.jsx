@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
-import { AppContext } from '../context/AppContext'
+import { AppContext } from '../../context/AppContext'
 import { FlatList, View, Text } from 'react-native'
-import ButoonStyled from "../components/ButtonStyled"
+import ButoonStyled from "../../components/ButtonStyled"
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
 import IconEntypo from 'react-native-vector-icons/Entypo';
@@ -20,9 +20,9 @@ export default function TaskList() {
             <View className="flex flex-col">
                 <Text className="text-center">{item.content}</Text>
                 <View className="flex flex-row justify-center space-x-3">
-                    <ButoonStyled text={"Editar"} icon={editIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={()=>router.push(`/Edit/${item.id}`)} />
+                    <ButoonStyled text={"Editar"} icon={editIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={()=>router.push(`auth/Edit/${item.id}`)} />
                     <View></View>
-                    <ButoonStyled text={"Ver"} icon={reviewIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={() => router.push(`/Task/${item.id}`)} />
+                    <ButoonStyled text={"Ver"} icon={reviewIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={() => router.push(`auth/Task/${item.id}`)} />
                 </View>
             </View>
         </View>
@@ -43,7 +43,7 @@ export default function TaskList() {
                 ItemSeparatorComponent={() => <View className="py-2" />}
             />
             <View>
-                < ButoonStyled text={"Agregar Tarea"} icon={addIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={() => router.push('/AddTask')} />
+                < ButoonStyled text={"Agregar Tarea"} icon={addIcon} mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} onPress={() => router.push('auth/AddTask')} />
             </View>
         </View >
 

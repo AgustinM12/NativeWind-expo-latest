@@ -1,8 +1,8 @@
 import { Text, View, TextInput, Alert } from "react-native";
 import React, { useContext } from "react";
-import { useInput } from "../hooks/useForm";
-import { AppContext } from "../context/AppContext";
-import StyledButton from "../components/ButtonStyled";
+import { useInput } from "../../hooks/useForm";
+import { AppContext } from "../../context/AppContext";
+import StyledButton from "../../components/ButtonStyled";
 import { router } from "expo-router";
 
 import IconEntypo from 'react-native-vector-icons/Entypo';
@@ -53,7 +53,7 @@ export default function Login() {
 
             if (success) {
                 showAlert();
-                router.push("/TaskList")
+                router.push("auth")
                 handleTitle("")
                 handleContent("")
                 setMessage("")
@@ -69,7 +69,7 @@ export default function Login() {
         handleTitle("")
         handleContent("")
         setMessage("")
-        router.push("/TaskList")
+        router.push("auth")
     };
 
     return (

@@ -28,6 +28,13 @@ export default function Layout() {
           />
 
           <Drawer.Screen
+            name='auth'
+            options={{
+              headerShown: false
+            }}
+          />
+
+          {/* <Drawer.Screen
             name='TaskList'
             options={{
               drawerLabel: "Lista de Tareas",
@@ -59,7 +66,7 @@ export default function Layout() {
               drawerLabel: () => null,
               drawerItemStyle: { display: "none" }
             }}
-          />
+          /> */}
 
         </Drawer>
       </GestureHandlerRootView>

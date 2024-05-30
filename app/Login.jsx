@@ -34,7 +34,7 @@ export default function Login() {
             "¡Loggin Correcto!"
         );
 
-        router.push("/TaskList");
+        router.push("auth");
     };
 
 
