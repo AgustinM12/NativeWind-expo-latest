@@ -33,7 +33,7 @@ export default function Login() {
     const handleSubmit = () => {
         if (title !== "" || content !== "") {
             editTask(indice, { "title": title, "content": content })
-            router.push("auth")
+            router.push("Auth")
         } else {
             setMessage("Error: Completa todos los campos")
         }
@@ -84,7 +84,7 @@ export default function Login() {
                 <View className="flex flex-row-reverse justify-center items-center pt-8 space-x-3">
                     <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Guardar"} onPress={showAlert} icon={saveIcon} />
                     <View></View>
-                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Cancelar"} icon={cancelIcon} onPress={()=>router.push("auth")} />
+                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Cancelar"} icon={cancelIcon} onPress={()=>router.push("Auth")} />
                 </View>
 
                 <Text className={`text-center ${message?.includes("Error") ? "text-red-500" : "text-green-500"}`}>{message}</Text>

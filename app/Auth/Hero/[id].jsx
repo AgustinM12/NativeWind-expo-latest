@@ -1,13 +1,27 @@
-import { View, Image, FlatList } from "react-native";
-import { useFetchOw } from "../hooks/useFetchOw";
+import { View, Image, FlatList, Alert } from "react-native";
+import { useFetchOw } from "../../../hooks/useFetchOw";
 import { Divider, Text, List, ActivityIndicator } from "react-native-paper";
 import { scale, verticalScale } from 'react-native-size-matters';
-import { ImagesComponent } from "../components/Images.component";
+import { ImagesComponent } from "../../../components/Images";
+import YoutubePlayer from "react-native-youtube-iframe";
+import { useState, useCallback } from "react";
+import { useLocalSearchParams } from "expo-router";
+import { Drawer } from "expo-router/drawer";
 
-export const CharaInfoPage = ({ route }) => {
+export default function CharaInfoPage() {
 
-    const { key } = route.params;
-    const { data, loading } = useFetchOw(key);
+    const { id } = useLocalSearchParams();
+
+    const [playing, setPlaying] = useState(false);
+
+    const onStateChange = useCallback((state) => {
+        if (state === "ended") {
+            setPlaying(false);
+            Alert.alert("video has finished playing!");
+        }
+    }, []);
+
+    const { data, loading } = useFetchOw(id);
 
     if (loading) {
         return (
@@ -19,7 +33,9 @@ export const CharaInfoPage = ({ route }) => {
 
     return (
         <>
-
+            <Drawer.Screen options={{
+                title: "Hero: " + id
+            }} />
             <FlatList
                 data={[
                     { key: 'name', value: data.name },
@@ -87,9 +103,15 @@ export const CharaInfoPage = ({ route }) => {
                             )
                         case 'mediaLink':
                             return (
-                                <Text>
-                                    {item.value}
-                                </Text>
+                                <View style={{ padding: 20 }}>
+                                    <Text style={{ textAlign: "center", textDecorationLine: "underline" }}>Introduction Cinematic:</Text>
+                                    <YoutubePlayer
+                                        height={300}
+                                        play={playing}
+                                        videoId={item.value.slice(17)}
+                                        onChangeState={onStateChange}
+                                    />
+                                </View>
                             )
                         default:
                             return (

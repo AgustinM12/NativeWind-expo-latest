@@ -29,7 +29,7 @@ export default function Login() {
 
     const handleDelete = () => {
         deleteTask(indice)
-        router.push("auth")
+        router.push("Auth")
     }
 
     const showAlert = () => {
@@ -66,7 +66,7 @@ export default function Login() {
                     </View>
 
                     <View className="flex flex-row justify-center items-center pt-6 space-x-3">
-                        <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Editar"} icon={editIcon} onPress={() => router.push(`auth/Edit/${task.id}`)} />
+                        <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Editar"} icon={editIcon} onPress={() => router.push(`Auth/Edit/${task.id}`)} />
                         <View></View>
                         <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Eliminar"} icon={deleteIcon} onPress={showAlert} />
                     </View>

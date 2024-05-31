@@ -5,7 +5,7 @@ export const AppContext = createContext();
 
 // Crear el proveedor del contexto
 export const AppProvider = ({ children }) => {
-    const [user, setUser] = useState([{ id: 1, userName: "admin", userPass: "0000" }]);
+    const [user, setUser] = useState([{ id: 1, userName: "Admin", userPass: "0000" }]);
     const [tasks, setTasks] = useState([{ id: 1, title: "Tarea de prueba", content: "Contenido de prueba" }])
     const [loged, setLoged] = useState(false)
 

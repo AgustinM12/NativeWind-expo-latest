@@ -28,45 +28,11 @@ export default function Layout() {
           />
 
           <Drawer.Screen
-            name='auth'
+            name='Auth'
             options={{
               headerShown: false
             }}
           />
-
-          {/* <Drawer.Screen
-            name='TaskList'
-            options={{
-              drawerLabel: "Lista de Tareas",
-              title: "Lista de Tareas"
-            }}
-          />
-
-
-          <Drawer.Screen
-            name='AddTask'
-            options={{
-              title: "Agregar Tarea",
-              drawerLabel: () => null,
-              drawerItemStyle: { display: "none" }
-            }}
-          />
-
-          <Drawer.Screen
-            name='Task/[id]'
-            options={{
-              drawerLabel: () => null,
-              drawerItemStyle: { display: "none" }
-            }}
-          />
-
-          <Drawer.Screen
-            name='Edit/[id]'
-            options={{
-              drawerLabel: () => null,
-              drawerItemStyle: { display: "none" }
-            }}
-          /> */}
 
         </Drawer>
       </GestureHandlerRootView>

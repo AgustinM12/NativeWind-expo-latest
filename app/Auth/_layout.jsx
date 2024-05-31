@@ -24,9 +24,10 @@ export default function Layout() {
         />
 
         <Drawer.Screen
-          name='Hero/OwWiki'
+          name='OwWiki'
           options={{
-            title: "Overwatch Wiki",
+            drawerLabel: "Overwatch wiki",
+            title: "Overwatch wiki",
           }}
         />
 
@@ -47,7 +48,13 @@ export default function Layout() {
           }}
         />
 
-
+        <Drawer.Screen
+          name='Hero/[id]'
+          options={{ 
+            drawerLabel: () => null,
+            drawerItemStyle: { display: "none" }
+          }}
+        />
 
       </Drawer>
     </GestureHandlerRootView>

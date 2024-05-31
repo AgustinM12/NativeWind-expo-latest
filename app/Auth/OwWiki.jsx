@@ -1,10 +1,12 @@
 import { View, FlatList } from 'react-native';
 import { Button, Card, Text, ActivityIndicator } from 'react-native-paper';
-import { useFetchOw } from '../../../hooks/useFetchOw';
-import { ImagesComponent } from '../../../components/Images';
+import { useFetchOw } from '../../hooks/useFetchOw';
+import { ImagesComponent } from '../../components/Images';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { useRouter } from 'expo-router';
 
-export function OwScreen({ navigation }) {
+export default function OwWiki() {
+    const router = useRouter()
 
     const { data, loading } = useFetchOw(false)
 
@@ -26,14 +28,15 @@ export function OwScreen({ navigation }) {
 
             <Card.Actions>
                 <Button
-                    onPress={() => navigation.navigate('Character Info', { key: item.key })} labelStyle={{ color: "white", textShadowRadius: 5, textShadowColor: "black" }}
+                    onPress={() => router.push(`Auth/Hero/${item.key}`)}
+                    labelStyle={{ color: "white", textShadowRadius: 5, textShadowColor: "black" }}
                     style={{ backgroundColor: "#ffa200", borderColor: "black" }}>
                     View Info
                 </Button>
 
             </Card.Actions>
 
-        </Card>
+        </Card >
     )
 
     if (loading) {

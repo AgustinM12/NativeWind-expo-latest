@@ -53,7 +53,7 @@ export default function Login() {
 
             if (success) {
                 showAlert();
-                router.push("auth")
+                router.push("Auth")
                 handleTitle("")
                 handleContent("")
                 setMessage("")
@@ -69,7 +69,7 @@ export default function Login() {
         handleTitle("")
         handleContent("")
         setMessage("")
-        router.push("auth")
+        router.push("Auth")
     };
 
     return (
