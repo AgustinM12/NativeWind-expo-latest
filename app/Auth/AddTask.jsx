@@ -14,7 +14,7 @@ export default function Login() {
     const addIcon = (<IconEntypo name="add-to-list" size={15} color="white" />);
     const cancelIcon = (<IconMaterialCommunityIcons name="cancel" size={15} color="white" />);
 
-    const { tasks, addTasks } = useContext(AppContext);
+    const { tasks, addTasks, darkTheme } = useContext(AppContext);
 
     const { input: title, setInput: setTitle } = useInput("");
     const { input: content, setInput: setContent } = useInput("");
@@ -73,8 +73,8 @@ export default function Login() {
     };
 
     return (
-        <View className="flex items-center pt-[35%]">
-            <View className="flex bg-[#b4c3da] py-8 w-[75%] rounded-md border-2 border-white">
+        <View className={`flex flex-1 items-center justify-center ${darkTheme ? "bg-slate-700" : "bg-neutral-200"}`}>
+            <View className={`flex py-8 w-[75%] rounded-md border-2 ${darkTheme ? "border-white bg-slate-500" : "bg-[#b4c3da] border-slate-400"} `}>
                 <Text className="text-white text-2xl text-center pb-3 font-bold">Agregar una tarea</Text>
                 <View className="flex justify-center items-center space-y-2">
                     <Text className="text-white font-semibold">Titulo:</Text>

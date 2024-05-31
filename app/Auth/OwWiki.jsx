@@ -19,22 +19,22 @@ export default function OwWiki() {
     /* ef4444 */
 
     const OwCard = ({ item }) => (
-        <Card key={item.key} mode='outlined' className={`w-[300] my-3 ${darkTheme ? "bg-blue-500 border-white border-2" : "bg-blue-200"}`}>
+        <Card key={item.key} mode='outlined' className={`w-[300] my-3 ${darkTheme ? "bg-sky-400 border-white border-2" : "bg-blue-200"}`}>
             <Card.Title title={`Hero Name: ${item.name}`} subtitle={`Role: ${item.role}`}
-                left={() => <ImagesComponent name={item.key} />} titleStyle={{ fontWeight: "bold", }} />
+                left={() => <ImagesComponent name={item.key} />} titleStyle={{ fontWeight: "bold", color: darkTheme ? "white" : "black" }} subtitleStyle={{ color: darkTheme ? "white" : "black" }} />
 
             <Card.Content>
-                <Text style={{ fontWeight: 'bold' }}>Picture:</Text>
+                <Text className={`font-bold ${darkTheme && "text-white"} `}>Picture:</Text>
             </Card.Content>
 
             <Card.Cover source={{ uri: item.portrait }}
-                style={{ height: verticalScale(256), width: scale(256), flex: 1, justifyContent: "center", alignSelf: "center", borderWidth: 2, borderColor: "black" }} />
+                style={{ height: verticalScale(256), width: scale(256), flex: 1, justifyContent: "center", alignSelf: "center", borderWidth: 2, borderColor: darkTheme ? "white" : "black" }} />
 
             <Card.Actions>
                 <Button
                     onPress={() => router.push(`Auth/Hero/${item.key}`)}
                     labelStyle={{ color: "white", textShadowRadius: 5, textShadowColor: "black" }}
-                    style={{ backgroundColor: "#ffa200", borderColor: "black" }}>
+                    style={{ backgroundColor: "#ffa200", borderColor: "white" }}>
                     View Info
                 </Button>
 
@@ -56,13 +56,13 @@ export default function OwWiki() {
             {
                 data.length > 0 ?
                     (
-                            <FlatList
-                                data={data}
-                                renderItem={({ item }) => <OwCard item={item} />}
-                                keyExtractor={item => item.key}
-                                className={`pl-[10%] ${darkTheme ? "bg-slate-700" : "bg-blue-100"} `}
-                                ItemSeparatorComponent={() => <View className="py-1" />}
-                            />
+                        <FlatList
+                            data={data}
+                            renderItem={({ item }) => <OwCard item={item} />}
+                            keyExtractor={item => item.key}
+                            className={`pl-[10%] ${darkTheme ? "bg-slate-700" : "bg-blue-100"} `}
+                            ItemSeparatorComponent={() => <View className="py-1" />}
+                        />
                     ) :
                     (<Text>
                         No hay personajes disponibles

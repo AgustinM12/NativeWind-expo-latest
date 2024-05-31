@@ -20,7 +20,7 @@ export default function TaskList() {
     router = useRouter()
 
     const taskList = ({ item }) => (
-        <View className={`flex justify-center items-center  p-2 rounded-md min-w-full border-2 ${!darkTheme ? "bg-neutral-300 border-gray-400" : "bg-slate-600 border-white"} `} key={item.id}>
+        <View className={`flex justify-center items-center  p-2 rounded-md min-w-full border-2 ${!darkTheme ? "bg-neutral-300 border-gray-400" : "bg-slate-500 border-white"} `} key={item.id}>
             <Text className={`text-center font-semibold underline ${darkTheme && "text-white"}`}>{item.title}</Text>
             <View className="flex flex-col">
                 <Text className={`text-center ${darkTheme && "text-white"}`}>{item.content}</Text>

@@ -14,7 +14,7 @@ const deleteIcon = (<IconMaterialCommunityIcons name="delete-forever" size={15} 
 export default function Login() {
     const router = useRouter()
     const { id } = useLocalSearchParams();
-    const { findTask, deleteTask } = useContext(AppContext)
+    const { findTask, deleteTask, darkTheme } = useContext(AppContext)
     const [task, setTask] = useState(null)
 
     const { tarea, indice } = findTask(id)
@@ -55,9 +55,9 @@ export default function Login() {
                 drawerLabel: "Tareas",
                 title: "Tarea N° " + id
             }} />
-            <View className="min-h-screen max-h-screen max-w-screen flex items-center pt-[35%]">
+            <View className={`flex flex-1 items-center pt-[35%] ${darkTheme ? "bg-slate-700" : "bg-neutral-200"}`}>
 
-                <View className="flex  bg-[#b4c3da] py-12 w-[85%] rounded-md border-2 border-white">
+                <View className={`flex py-12 w-[85%] rounded-md border-2 ${darkTheme ? "border-white bg-slate-500" : "border-slate-400 bg-[#b4c3da]"}`}>
 
                     <Text className="text-white text-2xl text-center pb-3 font-bold ">{task?.title}</Text>
 

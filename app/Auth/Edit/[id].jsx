@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import { useInput } from "../../../hooks/useForm";
 import { AppContext } from "../../../context/AppContext";
 import StyledButton from "../../../components/ButtonStyled";
-import { Drawer } from "expo-router/drawer";
 import { useRouter, useLocalSearchParams } from "expo-router";
 
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -11,11 +10,10 @@ import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommun
 const saveIcon = (<IconFontAwesome name="save" size={15} color="white" />)
 const cancelIcon = (<IconMaterialCommunityIcons name="cancel" size={15} color="white" />)
 
-
 export default function Login() {
     const router = useRouter()
     const { id } = useLocalSearchParams();
-    const { editTask, findTask } = useContext(AppContext)
+    const { editTask, findTask, darkTheme } = useContext(AppContext)
     const { tarea, indice } = findTask(id)
 
     const { input: title, setInput: setTitle } = useInput("")
@@ -65,9 +63,9 @@ export default function Login() {
     }, [tarea, id])
 
     return (
-        <View className="min-h-screen max-h-screen max-w-screen flex items-center pt-[35%]">
+        <View className={`flex flex-1 items-center pt-[35%] ${darkTheme ? "bg-slate-700" : "bg-neutral-200"}`}>
 
-            <View className="flex  bg-[#b4c3da] py-8 w-[75%] rounded-md border-2 border-white">
+            <View className={`flex py-8 w-[75%] rounded-md border-2 ${darkTheme ? "bg-slate-500 border-white" : "bg-[#b4c3da] border-white"}`}>
 
                 <Text className="text-white text-2xl text-center pb-3 font-bold ">Editar Tarea</Text>
 
@@ -84,7 +82,7 @@ export default function Login() {
                 <View className="flex flex-row-reverse justify-center items-center pt-8 space-x-3">
                     <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Guardar"} onPress={showAlert} icon={saveIcon} />
                     <View></View>
-                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Cancelar"} icon={cancelIcon} onPress={()=>router.push("Auth")} />
+                    <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Cancelar"} icon={cancelIcon} onPress={() => router.push("Auth")} />
                 </View>
 
                 <Text className={`text-center ${message?.includes("Error") ? "text-red-500" : "text-green-500"}`}>{message}</Text>

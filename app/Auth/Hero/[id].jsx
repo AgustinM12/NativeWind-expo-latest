@@ -4,11 +4,14 @@ import { Divider, Text, List, ActivityIndicator } from "react-native-paper";
 import { scale, verticalScale } from 'react-native-size-matters';
 import { ImagesComponent } from "../../../components/Images";
 import YoutubePlayer from "react-native-youtube-iframe";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { Drawer } from "expo-router/drawer";
+import { AppContext } from "../../../context/AppContext";
 
 export default function CharaInfoPage() {
+
+    const { darkTheme } = useContext(AppContext)
 
     const { id } = useLocalSearchParams();
 
@@ -31,10 +34,12 @@ export default function CharaInfoPage() {
         );
     }
 
+    const hero = "Hero: " + id[0].toUpperCase() + id.slice(1)
+
     return (
         <>
             <Drawer.Screen options={{
-                title: "Hero: " + id
+                title: hero
             }} />
             <FlatList
                 data={[
@@ -55,12 +60,12 @@ export default function CharaInfoPage() {
                         case 'abilities':
                             return (
                                 <>
-                                    <Text key="abilitiesHeader" style={{ textDecorationLine: "underline", textAlign: "center" }}>Abilities:</Text>
+                                    <Text key="abilitiesHeader" className={`underline text-center ${darkTheme ? "text-white bg-slate-500" : "text-black"}`}>Abilities:</Text>
                                     <Divider key="abilitiesDivider" />
                                     <FlatList
                                         data={item.value}
                                         renderItem={({ item }) => (
-                                            <List.Accordion title={item.name} id={item.name} left={() => <ImagesComponent url={item.icon} />}>
+                                            <List.Accordion className={`${darkTheme && "bg-slate-600"}`} title={item.name} id={item.name} left={() => <ImagesComponent url={item.icon} />}>
                                                 <Text style={{ paddingHorizontal: 10 }}>{item.description}</Text>
                                             </List.Accordion>
                                         )}
@@ -71,14 +76,14 @@ export default function CharaInfoPage() {
                         case 'chapters':
                             return (
                                 <>
-                                    <Text key="historyHeader" style={{ textDecorationLine: "underline", textAlign: "center" }}>Stories:</Text>
+                                    <Text key="historyHeader" className={`underline text-center ${darkTheme ? "text-white bg-slate-500" : "text-black"}`}>Stories:</Text>
                                     <Divider key="historyDivider" />
                                     <FlatList
                                         data={item.value}
                                         renderItem={({ item }) => (
                                             <List.Accordion title={item.title} id={item.title}>
-                                                <Text style={{ paddingHorizontal: 10 }}>{item.content}</Text>
-                                                <View style={{ width: scale(350), height: verticalScale(350), flex: 1, justifyContent: "center", alignSelf: "center" }}>
+                                                <Text className={`px-10 ${darkTheme ? "text-white bg-slate-500" : "text-black"}`}>{item.content}</Text>
+                                                <View children={`${darkTheme && "bg-slate-500"}`} style={{ width: scale(350), height: verticalScale(350), flex: 1, justifyContent: "center", alignSelf: "center" }}>
                                                     <Image
                                                         source={{ uri: item.picture }}
                                                         style={{ aspectRatio: 1, resizeMode: "stretch", borderColor: "#ffa200", borderWidth: 2, borderRadius: 25, margin: 15 }}
@@ -92,19 +97,19 @@ export default function CharaInfoPage() {
                             );
                         case 'portrait':
                             return (
-                                <>
-                                    <Text style={{ textAlign: "center", textDecorationLine: "underline" }}>{item.key[0].toUpperCase() + item.key.slice(1)}:</Text>
+                                <View className={`${darkTheme && "bg-slate-500"}`}>
+                                    <Text className={`text-center underline ${darkTheme ? "text-white" : "text-black"}`}>{item.key[0].toUpperCase() + item.key.slice(1)}:</Text>
                                     <Image
                                         source={{ uri: item.value }}
+                                        className={``}
                                         style={{ aspectRatio: 1, resizeMode: "stretch", borderColor: "#ffa200", borderWidth: 2, borderRadius: 25, marginVertical: 15, marginLeft: 'auto', marginRight: 'auto' }}
                                     />
-
-                                </>
+                                </View>
                             )
                         case 'mediaLink':
                             return (
-                                <View style={{ padding: 20 }}>
-                                    <Text style={{ textAlign: "center", textDecorationLine: "underline" }}>Introduction Cinematic:</Text>
+                                <View className={`p-20 ${darkTheme ? "bg-slate-500" : "text-black"}`}>
+                                    <Text className={`${darkTheme ? "text-white bg-slate-500" : "text-black"} text-center underline`} >Introduction Cinematic:</Text>
                                     <YoutubePlayer
                                         height={300}
                                         play={playing}
@@ -116,7 +121,7 @@ export default function CharaInfoPage() {
                         default:
                             return (
                                 <>
-                                    <Text key={item.key}>{item.key[0].toUpperCase() + item.key.slice(1)}: {item.value}</Text>
+                                    <Text className={`${darkTheme ? "text-white bg-slate-500" : "text-black"}`} key={item.key}>{item.key[0].toUpperCase() + item.key.slice(1)}: {item.value}</Text>
                                     <Divider />
                                 </>
                             );

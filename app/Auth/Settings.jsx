@@ -8,7 +8,7 @@ const Settings = () => {
     const { darkTheme, handleTheme } = useContext(AppContext)
 
     return (
-        <View className={`flex flex-1 justify-center, items-center ${darkTheme ? "bg-slate-700" : "bg-neutral-200"}`}>
+        <View className={`flex flex-1 justify-center, items-center py-5 ${darkTheme ? "bg-slate-700" : "bg-neutral-200"}`}>
             <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={`Cambiar tema: ${darkTheme ? "claro" : "oscuro"}`} onPress={handleTheme} />
         </View>
     )

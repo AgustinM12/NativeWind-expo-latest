@@ -14,7 +14,8 @@ export default function Layout() {
             options={{
               drawerLabel: "Registro",
               title: "Registro",
-              headerShown: false
+              headerShown: false,
+
             }}
           />
 
