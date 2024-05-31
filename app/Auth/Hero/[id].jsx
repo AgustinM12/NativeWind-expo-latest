@@ -91,7 +91,7 @@ export default function CharaInfoPage() {
                                                 </View>
                                             </List.Accordion>
                                         )}
-                                        className={darkTheme && "bg-slate-600"}
+                                        className={darkTheme && "bg-slate-500"}
                                         keyExtractor={(item) => item.title}
                                     />
                                 </>
