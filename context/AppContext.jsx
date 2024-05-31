@@ -8,6 +8,11 @@ export const AppProvider = ({ children }) => {
     const [user, setUser] = useState([{ id: 1, userName: "Admin", userPass: "0000" }]);
     const [tasks, setTasks] = useState([{ id: 1, title: "Tarea de prueba", content: "Contenido de prueba" }])
     const [loged, setLoged] = useState(false)
+    const [darkTheme, setDarkTheme] = useState(false)
+
+    const handleTheme = () => {
+        setDarkTheme(!darkTheme)
+    }
 
     const handleUser = (newValue) => {
         setUser([...user, newValue])
@@ -53,16 +58,8 @@ export const AppProvider = ({ children }) => {
         }
     }
 
-
-
-    const roleList = {
-        dps: ["ashe", "bastion", "cassidy", "echo", "genji", "hanzo", "junkrat", "mei", "pharah", "reaper", "sojourn", "soldier-76", "sombra", "symmetra", "torbjorn", "tracer", "venture", "widowmaker"],
-        tank: ["dva", "doomfist", "junker-queen", "mauga", "orisa", "ramattra", "reinhardt", "roadhog", "sigma", "winston", "wrecking-ball", "zarya"],
-        supp: ["ana", "baptiste", "brigitte", "illari", "kiriko", "lifeweaver", "lucio", "mercy", "moira", "zenyatta"],
-    }
-
     return (
-        <AppContext.Provider value={{ user, handleUser, roleList, findUser, loged, tasks, addTasks, findTask, deleteTask, editTask }}>
+        <AppContext.Provider value={{ user, handleUser, findUser, loged, tasks, addTasks, findTask, deleteTask, editTask, darkTheme, handleTheme }}>
             {children}
         </AppContext.Provider>
     );

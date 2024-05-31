@@ -1,13 +1,13 @@
-import { Text, View, TextInput, SafeAreaView, ImageBackground, Image } from "react-native";
-import React, { useContext, useEffect } from "react";
+import { Text, View, TextInput, SafeAreaView, ImageBackground, Image  } from "react-native";
+import React, { useContext } from "react";
 import { useInput } from "../hooks/useForm";
 import { AppContext } from "../context/AppContext";
 
 import PasswordInput from "../components/PasswordInput";
 import StyledButton from "../components/ButtonStyled";
-import owBgImg from "../assets/images/bg.jpg"
+import owBgImg from "../assets/images/ow.jpeg"
 import owLogo from "../assets/images/owLogo.png"
-import { Redirect, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 export default function Index() {
 
@@ -48,7 +48,8 @@ export default function Index() {
   return (
     <>
       <View className="flex items-center space-y-60">
-        <ImageBackground source={owBgImg} className="w-full h-full opacity-60"></ImageBackground>
+
+        <ImageBackground source={owBgImg} resizeMode="stretch" className="h-full w-screen opacity-60"></ImageBackground>
 
         <View className="flex flex-col flex-1 absolute bg-[#b4c3da] py-8 w-[75%] rounded-md border-2 border-white">
 

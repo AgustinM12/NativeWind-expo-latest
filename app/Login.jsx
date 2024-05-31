@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 
 import PasswordInput from "../components/PasswordInput";
 import StyledButton from "../components/ButtonStyled";
-import owBgImg from "../assets/images/bg.jpg"
+import owBgImg from "../assets/images/ow.jpeg"
 import owLogo from "../assets/images/owLogo.png"
 import { useRouter } from "expo-router";
 
@@ -52,7 +52,7 @@ export default function Login() {
 
     return (
         <View className="flex items-center space-y-60">
-            <ImageBackground source={owBgImg} className="w-[100%] h-full opacity-60"></ImageBackground>
+            <ImageBackground source={owBgImg} resizeMode="stretch" className="w-[100%] h-full opacity-60"></ImageBackground>
 
             <View className="flex flex-col flex-1 absolute bg-[#b4c3da] py-8 w-[75%] rounded-md border-2 border-white">
 

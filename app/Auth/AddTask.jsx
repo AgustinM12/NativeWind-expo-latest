@@ -47,7 +47,7 @@ export default function Login() {
     };
 
     const handleSubmit = () => {
-        if (title !== "" && content !== "") {
+        if (title.length > 0 && content.length > 0) {
             const taskId = tasks.length + 1;
             const success = addTasks({ id: taskId, title, content });
 

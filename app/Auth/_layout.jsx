@@ -32,6 +32,14 @@ export default function Layout() {
         />
 
         <Drawer.Screen
+          name='Settings'
+          options={{
+            drawerLabel: "Ajustes",
+            title: "Ajustes",
+          }}
+        />
+
+        <Drawer.Screen
           name='Task/[id]'
           options={{
             headerShown: false, drawerLabel: () => null,
@@ -50,7 +58,7 @@ export default function Layout() {
 
         <Drawer.Screen
           name='Hero/[id]'
-          options={{ 
+          options={{
             drawerLabel: () => null,
             drawerItemStyle: { display: "none" }
           }}
