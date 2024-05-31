@@ -65,8 +65,8 @@ export default function CharaInfoPage() {
                                     <FlatList
                                         data={item.value}
                                         renderItem={({ item }) => (
-                                            <List.Accordion className={`${darkTheme && "bg-slate-600"}`} title={item.name} id={item.name} left={() => <ImagesComponent url={item.icon} />}>
-                                                <Text style={{ paddingHorizontal: 10 }}>{item.description}</Text>
+                                            <List.Accordion className={`${darkTheme && "bg-slate-600"}`} titleStyle={darkTheme && { color: "white" }} title={item.name} id={item.name} left={() => <ImagesComponent url={item.icon} />}>
+                                                <Text className={`px-10 ${darkTheme && "bg-gray-500 text-white"}`} >{item.description}</Text>
                                             </List.Accordion>
                                         )}
                                         keyExtractor={(item) => item.name}
@@ -81,16 +81,17 @@ export default function CharaInfoPage() {
                                     <FlatList
                                         data={item.value}
                                         renderItem={({ item }) => (
-                                            <List.Accordion title={item.title} id={item.title}>
-                                                <Text className={`px-10 ${darkTheme ? "text-white bg-slate-500" : "text-black"}`}>{item.content}</Text>
+                                            <List.Accordion title={item.title} id={item.title} className={darkTheme && "bg-slate-600"} titleStyle={darkTheme && { color: "white" }}>
+                                                <Text className={`px-10 ${darkTheme ? "text-white bg-gray-500" : "text-black"}`}>{item.content}</Text>
                                                 <View children={`${darkTheme && "bg-slate-500"}`} style={{ width: scale(350), height: verticalScale(350), flex: 1, justifyContent: "center", alignSelf: "center" }}>
                                                     <Image
                                                         source={{ uri: item.picture }}
-                                                        style={{ aspectRatio: 1, resizeMode: "stretch", borderColor: "#ffa200", borderWidth: 2, borderRadius: 25, margin: 15 }}
+                                                        style={{ aspectRatio: 1, resizeMode: "stretch", borderColor: "#ffa200", borderWidth: 2, borderRadius: 25, margin: 15, }}
                                                     />
                                                 </View>
                                             </List.Accordion>
                                         )}
+                                        className={darkTheme && "bg-slate-600"}
                                         keyExtractor={(item) => item.title}
                                     />
                                 </>
@@ -101,15 +102,14 @@ export default function CharaInfoPage() {
                                     <Text className={`text-center underline ${darkTheme ? "text-white" : "text-black"}`}>{item.key[0].toUpperCase() + item.key.slice(1)}:</Text>
                                     <Image
                                         source={{ uri: item.value }}
-                                        className={``}
-                                        style={{ aspectRatio: 1, resizeMode: "stretch", borderColor: "#ffa200", borderWidth: 2, borderRadius: 25, marginVertical: 15, marginLeft: 'auto', marginRight: 'auto' }}
+                                        style={{ aspectRatio: 1, resizeMode: "stretch", borderColor: "#ffa200", borderWidth: 2, borderRadius: 25, marginVertical: 15, marginLeft: 'auto', marginRight: 'auto', backgroundColor:"white" }}
                                     />
                                 </View>
                             )
                         case 'mediaLink':
                             return (
-                                <View className={`p-20 ${darkTheme ? "bg-slate-500" : "text-black"}`}>
-                                    <Text className={`${darkTheme ? "text-white bg-slate-500" : "text-black"} text-center underline`} >Introduction Cinematic:</Text>
+                                <View className={`p-5 ${darkTheme ? "bg-slate-500" : "text-black"}`}>
+                                    <Text className={`${darkTheme ? "text-white bg-slate-500" : "text-black"} text-center underline pb-3`} >Introduction Cinematic:</Text>
                                     <YoutubePlayer
                                         height={300}
                                         play={playing}
