@@ -1,4 +1,4 @@
-import { Text, View, TextInput, SafeAreaView, ImageBackground, Image  } from "react-native";
+import { Text, View, TextInput, SafeAreaView, ImageBackground, Image, Alert } from "react-native";
 import React, { useContext } from "react";
 import { useInput } from "../hooks/useForm";
 import { AppContext } from "../context/AppContext";
@@ -10,6 +10,8 @@ import owLogo from "../assets/images/owLogo.png"
 import { useRouter } from "expo-router";
 
 export default function Index() {
+
+  const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\W).+$/;
 
   const router = useRouter()
 
@@ -32,16 +34,29 @@ export default function Index() {
     setPass2(text)
   }
 
+  const showAlert = () => {
+    Alert.alert(
+      "Success",
+      `¡Cuenta creada correctamente!`
+    );
+
+    router.push("Login");
+  };
+
   const handleSubmit = () => {
-    if (userName !== "" && userPass !== "" && pass2 !== "") {
+    if (userPass.length >= 5 && pass2 !== "" && userName.length >= 5 && userName.length <= 10 && regex.test(userPass)) {
       if (userPass == pass2) {
         handleUser({ "id": user.length + 1, "userName": userName, "userPass": userPass })
-        router.push("/Login")
+        showAlert()
       } else {
         setMessage("Error: Las contraseñas no coinciden")
       }
     } else {
-      setMessage("Error: Completa todos los campos")
+      if (userName.length < 5 || userName.length > 10) {
+        setMessage("Error: El nombre de usuario debe tener entre 5 y 10 caracteres")
+      } else if (!regex.test(userPass || userPass - length < 5)) {
+        setMessage("Error: la contraseña debe tener mas de 5 caracteres y tener al menos una mayuscula, numero y caracter especial.")
+      }
     }
   }
 
@@ -78,7 +93,7 @@ export default function Index() {
             <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"¿Ya tienes una cuenta?"} onPress={() => router.push("/Login")} />
           </View>
 
-          <Text className={`text-center ${message?.includes("Error") ? "text-red-500" : "text-green-500"}`}>{message}</Text>
+          <Text className={`text-center px-2 ${message?.includes("Error") ? "text-red-500" : "text-green-500"}`}>{message}</Text>
 
         </View>
       </View>

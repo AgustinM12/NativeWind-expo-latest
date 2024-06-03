@@ -31,7 +31,7 @@ export default function Login() {
     const showAlert = () => {
         Alert.alert(
             "Success",
-            "¡Loggin Correcto!"
+            `¡Loggin Correcto, bienvenido ${userName}!`
         );
 
         router.push("Auth");
