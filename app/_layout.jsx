@@ -15,6 +15,7 @@ export default function Layout() {
               drawerLabel: "Registro",
               title: "Registro",
               headerShown: false,
+              drawerStyle: { width: 0 }
             }}
           />
 
@@ -23,14 +24,17 @@ export default function Layout() {
             options={{
               drawerLabel: "Login",
               title: "Login",
-              headerShown: false
+              headerShown: false,
+              drawerStyle: { width: 0 }
+              
             }}
           />
 
           <Drawer.Screen
             name='Auth'
             options={{
-              headerShown: false
+              headerShown: false,
+              drawerStyle: { width: 0 }
             }}
           />
 

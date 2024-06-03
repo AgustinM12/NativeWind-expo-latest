@@ -1,4 +1,4 @@
-import { Text, View, TextInput, SafeAreaView, ImageBackground, Image, Alert } from "react-native";
+import { Text, View, TextInput, SafeAreaView, ImageBackground, Image, Alert, ScrollView } from "react-native";
 import React, { useContext } from "react";
 import { useInput } from "../hooks/useForm";
 import { AppContext } from "../context/AppContext";
@@ -15,7 +15,7 @@ export default function Index() {
 
   const router = useRouter()
 
-  const { handleUser, user, loged } = useContext(AppContext)
+  const { handleUser, user } = useContext(AppContext)
 
   const { input: userName, setInput: setUserName } = useInput("")
   const { input: userPass, setInput: setUserPass } = useInput("")
@@ -62,9 +62,10 @@ export default function Index() {
 
   return (
     <>
-      <View className="flex items-center space-y-60">
+      <View className="flex items-center space-y-60 ">
 
-        <ImageBackground source={owBgImg} resizeMode="stretch" className="h-full w-screen opacity-60"></ImageBackground>
+        <ImageBackground source={owBgImg} resizeMode="stretch" className="h-full w-screen opacity-60"/>
+
 
         <View className="flex flex-col flex-1 absolute bg-[#b4c3da] py-8 w-[75%] rounded-md border-2 border-white">
 

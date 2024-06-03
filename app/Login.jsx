@@ -33,7 +33,7 @@ export default function Login() {
             "Success",
             `¡Loggin Correcto, bienvenido ${userName}!`
         );
-
+        
         router.push("Auth");
     };
 

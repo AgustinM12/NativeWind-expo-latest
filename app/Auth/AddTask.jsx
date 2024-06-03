@@ -14,7 +14,7 @@ export default function Login() {
     const addIcon = (<IconEntypo name="add-to-list" size={15} color="white" />);
     const cancelIcon = (<IconMaterialCommunityIcons name="cancel" size={15} color="white" />);
 
-    const { tasks, addTasks, darkTheme } = useContext(AppContext);
+    const { tasks, addTasks, darkTheme, loged } = useContext(AppContext);
 
     const { input: title, setInput: setTitle } = useInput("");
     const { input: content, setInput: setContent } = useInput("");
@@ -49,7 +49,7 @@ export default function Login() {
     const handleSubmit = () => {
         if (title.length > 0 && content.length > 0) {
             const taskId = tasks.length + 1;
-            const success = addTasks({ id: taskId, title, content });
+            const success = addTasks({ id: taskId, title, content, date: new Date(), author: loged?.user });
 
             if (success) {
                 showAlert();

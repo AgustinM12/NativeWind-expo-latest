@@ -65,6 +65,12 @@ export default function Login() {
                         <Text className="text-center text-white font-semibold p-4">{task?.content}</Text>
                     </View>
 
+                    <View>
+                        <Text className="text-center text-white font-semibold p-4">Fecha de creacion: {JSON.stringify(task?.date).slice(1,-1)}</Text>
+                        <Text className="text-center text-white font-semibold p-4">Autor: {task?.author}</Text>
+                    </View>
+
+
                     <View className="flex flex-row justify-center items-center pt-6 space-x-3">
                         <StyledButton mainColor={"bg-orange-400"} secondColor={"bg-orange-600"} text={"Editar"} icon={editIcon} onPress={() => router.push(`Auth/Edit/${task.id}`)} />
                         <View></View>

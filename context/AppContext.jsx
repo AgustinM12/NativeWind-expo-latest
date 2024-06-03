@@ -6,8 +6,8 @@ export const AppContext = createContext();
 // Crear el proveedor del contexto
 export const AppProvider = ({ children }) => {
     const [user, setUser] = useState([{ id: 1, userName: "Admin", userPass: "0000" }]);
-    const [tasks, setTasks] = useState([{ id: 1, title: "Tarea de prueba", content: "Contenido de prueba" }])
-    const [loged, setLoged] = useState(false)
+    const [tasks, setTasks] = useState([{ id: 1, title: "Tarea de prueba", content: "Contenido de prueba", author: "Admin", date: new Date() }])
+    const [loged, setLoged] = useState({ user: null, status: false })
     const [darkTheme, setDarkTheme] = useState(false)
 
     const handleTheme = () => {
@@ -25,12 +25,18 @@ export const AppProvider = ({ children }) => {
 
     const findUser = (userName, userPass) => {
         if (user?.some(account => account.userName === userName && account.userPass === userPass)) {
-            setLoged(true)
+            if (loged.status == false) {
+                setLoged({ user: userName, status: true })
+            }
             return true
         } else {
             return false
         }
     };
+
+    const logout = () => {
+        setLoged({ user: null, status: false })
+    }
 
     const findTask = (id) => {
         const index = tasks?.findIndex(task => task.id == id);
@@ -59,7 +65,7 @@ export const AppProvider = ({ children }) => {
     }
 
     return (
-        <AppContext.Provider value={{ user, handleUser, findUser, loged, tasks, addTasks, findTask, deleteTask, editTask, darkTheme, handleTheme }}>
+        <AppContext.Provider value={{ user, handleUser, findUser, loged, logout, tasks, addTasks, findTask, deleteTask, editTask, darkTheme, handleTheme }}>
             {children}
         </AppContext.Provider>
     );
