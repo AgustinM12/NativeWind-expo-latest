@@ -66,7 +66,7 @@ export default function Login() {
                     </View>
 
                     <View>
-                        <Text className="text-center text-white font-semibold p-4">Fecha de creacion: {JSON.stringify(task?.date).slice(1,-1)}</Text>
+                        <Text className="text-center text-white font-semibold p-4">Fecha de creacion: {JSON.stringify(task?.date)?.slice(1,-1)}</Text>
                         <Text className="text-center text-white font-semibold p-4">Autor: {task?.author}</Text>
                     </View>
 
